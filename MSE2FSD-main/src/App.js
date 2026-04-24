@@ -25,7 +25,6 @@ export default function App() {
       const matchPrice =
         p.price >= priceRange.min && p.price <= priceRange.max;
 
-      // Bug 2: category filter logic
       const matchCategory =
         category === 'All' || p.category === category;
 
@@ -51,7 +50,7 @@ export default function App() {
     }
 
     return list;
-  }, [searchQuery, priceRange, category, sortBy]); // ✅ Bug 2: Missing Dependency (category)
+  }, [searchQuery, priceRange, category, sortBy]);
 
   function addToCart(product) {
     setCartItems(prev => {
@@ -69,7 +68,6 @@ export default function App() {
     setCartOpen(true);
   }
 
-  // ✅ Bug 3:Remove from Cart Logic
   function removeFromCart(id) {
     setCartItems(prev => prev.filter(i => i.id !== id));
   }
@@ -83,7 +81,6 @@ export default function App() {
     );
   }
 
-  // bug 5: Cart Count Bug
   const cartCount = cartItems.reduce((sum, i) => sum + i.qty, 0);
 
   
